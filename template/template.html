@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" id="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <!-- 请修改页面title -->
+  <title>template</title>
+  <link rel="stylesheet" type="text/css" href="../lib/css/base.css">
+  <!-- css文件已自动生成，请修改对应css文件名 -->
+  <link rel="stylesheet" type="text/css" href="css/template.css">
+  <script>
+   (function() {
+    function setRem() {
+      var html = document.documentElement;
+      var width = html.clientWidth;
+      html.style.fontSize = width / 15+ "px";
+    }
+    setRem();
+    window.addEventListener('orientation' in window ? "deviceorientation" : "resize", setRem);
+  })
+    </script>
+</head>
+
+<body>
+  <!-- 页面内容 -->
+</body>
+<script src="../lib/js/zepto.min.js" type="text/javascript"></script>
+<!-- js文件已自动生成，请修改js文件名 -->
+<script src="js/template.js" type="text/javascript"></script>
+</html>
