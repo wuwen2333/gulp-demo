@@ -1,0 +1,5 @@
+@charset "UTF-8";
+
+@function torem($px){
+  @return $px/25px * 1rem;
+}

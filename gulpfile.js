@@ -15,14 +15,14 @@ const rename = require('gulp-rename'); // 重命名
 const distDir = './dist';
 const devDir = './src';
 
-gulp.task('default', ['convertJS', 'html', 'sass', 'picmin', 'lib'], function() {
+gulp.task('default', ['convertJS', 'restore', 'sass', 'picmin', 'lib'], function() {
   browserSync.init({
     server: './dist',
     directory: true
   });
   gulp.watch(`${devDir}/**/*.scss`, ['sass']);
   gulp.watch(`${devDir}/**/*.js`, ['convertJS']);
-  gulp.watch(`${devDir}/**/*.html`, ['html']);
+  gulp.watch(`${devDir}/**/*.{html,css}`, ['restore']);
   gulp.watch(`${devDir}/**/images/*`, ['picmin']);
   gulp.watch(`./lib/*`, ['lib']);
 
@@ -69,14 +69,20 @@ gulp.task('convertJS', function(){
 })
 
 //另存html页面
-gulp.task('html', function () {
-  return gulp.src(`${devDir}/**/*.html`)
+gulp.task('restore', function () {
+  return gulp.src(`${devDir}/**/*.{html,css}`)
     .pipe(gulp.dest(distDir));
 });
 
+// //另存css
+// gulp.task('css', function () {
+//   return gulp.src(`${devDir}/**/*.css`)
+//     .pipe(gulp.dest(distDir));
+// });
+
 //另存lib第三方库
 gulp.task('lib', function () {
-  return gulp.src(`./lib/**/*`)
+  return gulp.src(`./lib/**/*.{js,css}`)
     .pipe(gulp.dest(`${distDir}/lib`));
 });
 
