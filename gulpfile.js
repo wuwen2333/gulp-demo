@@ -11,16 +11,22 @@ const sass = require('gulp-sass');
 const sourcemaps = require('gulp-sourcemaps'); //sass调试map图
 const autoprefixer = require('gulp-autoprefixer'); //css加浏览器版本前缀
 const rename = require('gulp-rename'); // 重命名
+const replace = require('gulp-replace');
+
+const minimist = require('minimist');
 
 const distDir = './dist';
 const devDir = './src';
 
 gulp.task('default', ['convertJS', 'restore', 'sass', 'picmin', 'lib'], function() {
+  const argv = require('minimist')(process.argv.slice(2));
   browserSync.init({
     server: './dist',
+    port: argv.port || 3000,
     directory: true
   });
   gulp.watch(`${devDir}/**/*.scss`, ['sass']);
+  // gulp.watch(`${devDir}/**/*.js`, ['convertJS', 'browserify']);
   gulp.watch(`${devDir}/**/*.js`, ['convertJS']);
   gulp.watch(`${devDir}/**/*.{html,css}`, ['restore']);
   gulp.watch(`${devDir}/**/images/*`, ['picmin']);
@@ -31,29 +37,25 @@ gulp.task('default', ['convertJS', 'restore', 'sass', 'picmin', 'lib'], function
   gulp.watch(`${distDir}/**/*.js`).on('change', browserSync.reload);
 });
 
-// 生成一个新项目
-// gulp.task('project', function() {
-//   if (gulp.env.name) {
-//     return gulp.src('./template/**/*')
-//       .pipe(rename(function (path) {
-//         path.dirname = path.dirname.replace('template', gulp.env.name);
-//       }))
-//       .pipe(gulp.dest(`${devDir}/${gulp.env.name}`));
-//   } else {
-//     return ;
-//   }
-// })
-
+// 说明
+gulp.task('help', function() {
+  console.dir('启动项目: gulp --port (default:3000)');
+  console.dir('新建页面: gulp page --module moduleName --name pageName --js');
+  console.dir('清空dist目录: gulp clean');
+})
 // 生成一个新页面
 gulp.task('page', function() {
-  if (gulp.env.module && gulp.env.name) {
-    return gulp.src(`./template/**/*.{${gulp.env.js ? 'js' : ''},html,scss}`)
+  const argv = require('minimist')(process.argv.slice(2));
+  if (argv.module && argv.name) {
+    return gulp.src(`./template/**/*.{${argv.js ? 'js' : ''},html,scss}`)
       .pipe(rename(function (path) {
-        path.dirname = path.dirname.replace('template', gulp.env.module);
-        path.basename = gulp.env.name;
+        path.dirname = path.dirname.replace('template', argv.module);
+        path.basename = argv.name;
       }))
-      .pipe(gulp.dest(`${devDir}/${gulp.env.module}`));
+      .pipe(replace('/template.', `/${argv.name}.`))
+      .pipe(gulp.dest(`${devDir}/${argv.module}`));
   } else {
+    console.dir('新建页面:gulp page --module moduleName --name pageName --js')
     return;
   }
 })
@@ -61,10 +63,12 @@ gulp.task('page', function() {
 // 编译并压缩js
 gulp.task('convertJS', function(){
   return gulp.src(`${devDir}/**/*.js`)
+    .pipe(sourcemaps.init())
     .pipe(babel({
       presets: ['es2015']
     }))
     .pipe(uglify())
+    .pipe(sourcemaps.write('./maps'))
     .pipe(gulp.dest(distDir));
 })
 
@@ -73,12 +77,6 @@ gulp.task('restore', function () {
   return gulp.src(`${devDir}/**/*.{html,css}`)
     .pipe(gulp.dest(distDir));
 });
-
-// //另存css
-// gulp.task('css', function () {
-//   return gulp.src(`${devDir}/**/*.css`)
-//     .pipe(gulp.dest(distDir));
-// });
 
 //另存lib第三方库
 gulp.task('lib', function () {
