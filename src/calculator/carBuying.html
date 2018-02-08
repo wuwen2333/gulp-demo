@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" id="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>利息计算器</title>
+  <link rel="stylesheet" type="text/css" href="../lib/css/base.css">
+  <link rel="stylesheet" type="text/css" href="css/interest.css">
+  <script>
+   (function() {
+    function setRem() {
+      var html = document.documentElement;
+      var width = html.clientWidth;
+      html.style.fontSize = width / 15+ "px";
+    }
+    setRem();
+    window.addEventListener('orientation' in window ? "deviceorientation" : "resize", setRem);
+  })();
+    </script>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="main">
+      <div class="item">
+        <span class="label">购车金额</span>
+        <div class="ipt"><input type="number" placeholder="0" id="carPrice"></div>
+        <span class="unit">元</span>
+      </div>
+      <div class="item">
+        <span class="label">首付比例</span>
+        <div class="ipt"><input type="number" placeholder="0" id="downpayment"></div>
+        <span class="unit">%</span>
+      </div>
+      <div class="item" id="loanTerm">
+        <span class="label">贷款期限</span>
+        <div class="ipt"><span class="value">3年(36)期</span></div>
+        <span class="unit triangle"></span>
+      </div>
+      <div class="item">
+        <span class="label">贷款利率</span>
+        <div class="ipt"><input type="number" placeholder="0" id="lendingRate"></div>
+        <span class="unit">%</span>
+      </div>
+      <div class="item">
+        <span class="label">上牌费</span>
+        <div class="ipt"><input type="number" placeholder="0" id="licenseFee"></div>
+        <span class="unit">元</span>
+      </div>
+      <div class="item" id="carTax">
+        <span class="label">车船税</span>
+        <div class="ipt"><span class="value">420元（1.0-1.6L(含)以下）</span></div>
+        <span class="unit triangle"></span>
+      </div>
+    </div>
+    <div class="btn" id="submit">开始计算</div>
+  </div>
+</body>
+<script src="../lib/js/zepto.min.js" type="text/javascript"></script>
+<script src="../lib/js/picker.min.js" type="text/javascript"></script>
+<script src="js/carBuying.js" type="text/javascript"></script>
+</html>

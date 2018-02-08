@@ -1,0 +1,2 @@
+"use strict";var equalAmountOfPrincipal=function(t,e,n){var r=e/12/100;return{monthlyPayment:t/n+t*r,monthlyPaymentDecrease:t/n*r,totalInterest:n*(t*r-r*(t/n)*(n-1)/2+t/n)-t}},equalAmountOfInterest=function(t,e,n){var r=e/12/100,a=t*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1);return{monthlyInterestrate:r,monthlyPayment:a,totalInterest:n*a-t}},formatMoney=function(t){var e=/(?=(?!\b)(\d{3})+$)/g;return t&&t.toFixed(2).toString().replace(/(^|\s)\d+(?=\.?\d*($|\s))/g,function(t){return t.replace(e,",")})};
+//# sourceMappingURL=../../maps/calculator/js/utils.js.map

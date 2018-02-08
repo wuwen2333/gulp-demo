@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" id="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>工资计算器</title>
+  <link rel="stylesheet" type="text/css" href="../lib/css/base.css">
+  <link rel="stylesheet" type="text/css" href="css/carByingRes.css">
+  <script>
+   (function() {
+    function setRem() {
+      var html = document.documentElement;
+      var width = html.clientWidth;
+      html.style.fontSize = width / 15+ "px";
+    }
+    setRem();
+    window.addEventListener('orientation' in window ? "deviceorientation" : "resize", setRem);
+  })();
+    </script>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="main result interest">
+      <div class="summary">
+        <p class="label">税后：<span class="summaryMoney">00.00元</span></p>
+        <p class="remarks">税前：00.00元</p>
+      </div>
+      <div class="detail">
+        <div class="item">
+          社保：<span class="ssTotal">00.00</span>元
+        </div>
+        <div class="item secondary">
+          养老保险：<span class="endowmentInsurance">00.00</span>元（8.00%）
+        </div>
+        <div class="item secondary">
+          医疗保险：<span class="medicalInsurance">00.00</span>元（2.00%）
+        </div>
+        <div class="item secondary">
+          失业保险：<span class="unemploymentInsurance">00.00</span>元（0.05%）
+        </div>
+        <div class="item secondary">
+          工伤保险：<span>- -</span>
+        </div>
+        <div class="item secondary">
+          生育保险：<span>- -</span>
+        </div>
+        <div class="item">
+          公积金：<span class="accumulationFund">00.00</span>元
+        </div>
+        <div class="item secondary">
+          基本住房公积金：<span class="accumulationFund">00.00</span>元（5.00%）
+        </div>
+        <div class="item secondary">
+          补充住房公积金：<span>- -</span>
+        </div>
+        <div class="item">
+          个税：<span class="tax">14,000.00</span>元
+        </div>
+      </div>
+      <div class="total">
+        个人缴纳合计：<span>00.00</span>元
+      </div>
+    </div>
+    <div class="btn" id="submit">重新计算</div>
+  </div>
+</body>
+<script src="../lib/js/zepto.min.js" type="text/javascript"></script>
+<script src="js/utils.js" type="text/javascript"></script>
+<script src="js/wagesRes.js" type="text/javascript"></script>
+</html>

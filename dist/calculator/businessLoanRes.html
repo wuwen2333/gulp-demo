@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" id="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>商业贷款计算器</title>
+  <link rel="stylesheet" type="text/css" href="../lib/css/base.css">
+  <link rel="stylesheet" type="text/css" href="css/carByingRes.css">
+  <script>
+   (function() {
+    function setRem() {
+      var html = document.documentElement;
+      var width = html.clientWidth;
+      html.style.fontSize = width / 15+ "px";
+    }
+    setRem();
+    window.addEventListener('orientation' in window ? "deviceorientation" : "resize", setRem);
+  })();
+    </script>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="main result">
+      <div class="summary">
+        <p class="label">月供：<span class="summaryMoney">00.00元</span><em class="term">（36期）</em></p>
+        <p class="remarks"></p>
+      </div>
+      <div class="detail">
+        <div class="item totalLoan">
+          贷款总额：<span>00.00</span>元
+        </div>
+        <div class="item totalInterest">
+          利息总额：<span>00.00</span>元
+        </div>
+        <div class="item firstPay">
+          首付金额：<span>00.00</span>元
+        </div>
+      </div>
+      <div class="total">
+        总共费用：<span>00.00</span>元
+      </div>
+    </div>
+    <div class="btn" id="submit">重新计算</div>
+  </div>
+</body>
+<script src="../lib/js/zepto.min.js" type="text/javascript"></script>
+<script src="js/utils.js" type="text/javascript"></script>
+<script src="js/businessLoanRes.js" type="text/javascript"></script>
+</html>

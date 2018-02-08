@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" id="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>工资计算器</title>
+  <link rel="stylesheet" type="text/css" href="../lib/css/base.css">
+  <link rel="stylesheet" type="text/css" href="css/interest.css">
+  <script>
+   (function() {
+    function setRem() {
+      var html = document.documentElement;
+      var width = html.clientWidth;
+      html.style.fontSize = width / 15+ "px";
+    }
+    setRem();
+    window.addEventListener('orientation' in window ? "deviceorientation" : "resize", setRem);
+  })();
+    </script>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="main">
+      <div class="item" id="location">
+        <span class="label">所在城市</span>
+        <div class="ipt"><span class="value">深圳市</span></div>
+        <span class="unit"></span>
+      </div>
+      <div class="item">
+        <span class="label">税前工资</span>
+        <div class="ipt"><input type="number" placeholder="请输入" id="grossPay"></div>
+        <span class="unit">元</span>
+      </div>
+      <div class="item" id="taxThreshold">
+        <span class="label">个税起征点</span>
+        <div class="ipt"><span class="value">非外籍员工3500元</span></div>
+        <span class="unit triangle"></span>
+      </div>
+      <div class="item" id="ssBase">
+        <span class="label">社保基数</span>
+        <div class="ipt"><span class="value">按统一标准缴纳</span></div>
+        <span class="unit triangle"></span>
+      </div>
+      <div class="item" id="pfBase">
+        <span class="label">公积金基数</span>
+        <div class="ipt"><span class="value">按统一标准缴纳</span></div>
+        <span class="unit triangle"></span>
+      </div>
+    </div>
+    <div class="btn" id="submit">开始计算</div>
+  </div>
+</body>
+<script src="../lib/js/zepto.min.js" type="text/javascript"></script>
+<script src="../lib/js/picker.min.js" type="text/javascript"></script>
+<script src="js/wages.js" type="text/javascript"></script>
+</html>

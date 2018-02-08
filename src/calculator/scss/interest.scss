@@ -1,0 +1,214 @@
+@charset "UTF-8";
+
+@import "../../../lib/scss/common.scss";
+
+$mainColor: #5D769A;
+$textColor: #869CBD;
+$borderColor: #D9E2EF;
+$bgBlue: #3578F5;
+
+body {
+  background-image: url('../images/bg.png');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-color: #f8fbfc;
+  .wrap {
+    padding: torem(10px);
+    .main {
+      min-height: torem(376px);
+      padding-left: torem(15px);
+      box-shadow: 0 0 14px 0 rgba(199,198,198,0.50);
+      border-radius: 6px;
+      box-sizing: border-box;
+      background: #fff;
+      .item {
+        display: flex;
+        height: torem(60px);
+        border-bottom: 1px solid $borderColor;
+        line-height: torem(60px);
+        .label {
+          width: torem(80px);
+          font-size: torem(16px);
+          color: $mainColor;
+        }
+        .ipt {
+          flex: 1;
+          padding-right: torem(10px);
+          input, span {
+            display: block;
+            width: 100%;
+            height: 100%;
+            border: 0;
+            text-align: right;
+            font-size: torem(14px);
+            color: $textColor;
+            vertical-align: top;
+          }
+        }
+        .unit {
+          width: torem(30px);
+          font-size: torem(12px);
+          color: $textColor;
+          &.triangle{
+            position: relative;
+            &:after {
+              content: '';
+              @extend .center;
+              left: torem(6px);
+              margin-top: torem(3px);
+              width: 0;
+              height: 0;
+              border-color: transparent;
+              border-style: dashed;
+              border-width: torem(5px) torem(6px);
+              border-top: torem(6px) solid $textColor;
+            }
+          }
+        }
+      }
+    }
+    .btn {
+      margin-top: torem(45px);
+      height: torem(50px);
+      line-height: torem(50px);
+      text-align: center;
+      background-image: linear-gradient(-95deg, #57E9F6 2%, #397AF4 100%);
+      box-shadow: 0 0 torem(14px) 0 rgba(103,164,240,0.48);
+      border-radius: torem(4px);
+      font-size: torem(18px);
+      color: #fff;
+    }
+  }
+  .mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.5);
+    .pop {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background-color: #fff;
+      .title {
+        height: torem(40px);
+        line-height: torem(40px);
+        border-bottom: 1px solid $borderColor;
+        h3 {
+          text-align: center;
+          font-size: torem(16px);
+          font-weight: normal;
+          color: $mainColor;
+        }
+        a {
+          position: absolute;
+          top: 0;
+          height: 100%;
+          padding: 0 torem(10px);
+          font-size: torem(14px);
+          color: $textColor;
+          &.cancel {
+            left: 0;
+          }
+          &.confirm {
+            right: 0;
+            color: $mainColor;
+          }
+        }
+      }
+      .inner {
+        padding: torem(40px) torem(10px);
+        .interest {
+          display: flex;
+          padding-bottom: torem(40px);
+          line-height: torem(20px);
+          font-size: torem(14px);
+          color: #333;
+          .ipt {
+            flex: 1;
+            input {
+              margin: 0 torem(5px);
+              width: torem(100px);
+              height: torem(20px);
+              border: 0;
+              border-bottom: 1px solid $borderColor;
+              text-align: right;
+              color: $mainColor;
+            }
+          }
+          .interestType {
+            display: inline-block;
+            position: relative;
+            padding-left: torem(45px);
+            text-align: right;
+            &:before {
+              content: '';
+              position: absolute;
+              top: torem(2px);
+              left: torem(20px);
+              width: torem(16px);
+              height: torem(16px);
+              border-radius: 100%;
+              border: 1px solid $mainColor;
+            }
+            &.checked:after {
+              content: '';
+              position: absolute;
+              top: torem(5px);
+              left: torem(23px);
+              width: torem(12px);
+              height: torem(12px);
+              border-radius: 100%;
+              background-color: $mainColor
+            }
+            input {
+              vertical-align: top;
+            }
+          }
+        }
+        .btn {
+          display: block;
+          margin: 0 auto;
+          width: torem(50px);
+          height: torem(24px);
+          border: 1px solid $mainColor;
+          border-radius: torem(12px);
+          line-height: torem(24px);
+          text-align: center;
+          color: $mainColor;
+          font-size: torem(14px);
+        }
+      }
+    }
+  }
+  .picker .picker-panel .picker-choose {
+    height: torem(40px);
+    border-bottom: 1px solid $borderColor;
+    color: #999;
+  }
+  .picker .picker-panel .picker-choose .cancel, .picker .picker-panel .picker-choose .confirm {
+    top: 0;
+    font-size: torem(14px);
+    color: $textColor;
+  }
+  .picker .picker-panel .picker-choose .confirm {
+    color: $mainColor;
+  }
+  .picker .picker-panel .picker-choose .picker-title {
+    line-height: torem(40px);
+    font-size: torem(16px);
+    font-weight: normal;
+    color: $mainColor;
+  }
+  .picker .picker-panel .wheel-wrapper .wheel .wheel-scroll .wheel-item {
+    font-size: torem(14px);
+    color: $mainColor;
+  }
+  .picker .picker-panel .picker-content .mask-top:after, .picker .picker-panel .picker-content .mask-top:before,.picker .picker-panel .picker-content .mask-bottom:after, .picker .picker-panel .picker-content .mask-bottom:before {
+    border-color: $borderColor;
+  }
+}
+
+
+
