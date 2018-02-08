@@ -34,7 +34,7 @@ $(document).ready(function(){
     // 用户选择值改变
     _picker.on('picker.valuechange', function (selectedVal, selectedIndex) {
       resultData.loanTerm = selectedVal[0];
-      var _innerText = `${_data[selectedIndex[0]].text}年(${selectedVal * 12}期)`;
+      var _innerText = `${_data[selectedIndex[0]].text}(${selectedVal * 12}期)`;
       $loanTerm.find('.value').text(_innerText);
     });
 

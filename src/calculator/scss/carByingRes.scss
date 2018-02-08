@@ -30,8 +30,11 @@ body {
         line-height: torem(70px);
         border-bottom: 1px solid $borderColor;
         .label {
+          height: torem(70px);
           font-size: torem(20px);
           color: $mainColor;
+          word-break: break-all;
+          overflow: hidden;
           span {
             color: #FB8A02;
           }
